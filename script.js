@@ -257,6 +257,7 @@ function buyTop(c, free) {
         delete cur[id];
         updateLowerDollarUI();
         updatePlayerUI();
+        saveCalcState();
         updateScore();
         return
     }
@@ -268,6 +269,7 @@ function buyTop(c, free) {
 
         updateLowerDollarUI();
         updatePlayerUI();
+        saveCalcState();
         updateScore();
         return;
     }
@@ -284,6 +286,7 @@ function buyTop(c, free) {
     };
     updateLowerDollarUI();
     updatePlayerUI();
+    saveCalcState();
     updateScore()
 }
 
@@ -356,7 +359,9 @@ function updatePlayerUI() {
     });
     p1PurchaseText.textContent = getPurchase("p1") + "ⓒ";
     p2PurchaseText.textContent = getPurchase("p2") + "ⓒ";
-    p2BonusText.textContent = getP2Bonus() + "점"
+    if (p2BonusText) {
+    p2BonusText.textContent = getP2Bonus() + "점";
+    }
 }
 
 function isLowerDollarBlocked(id) {
