@@ -261,18 +261,9 @@ function buyTop(c, free) {
         return
     }
     if (free) {
-
-        let mode = "free";
-        let cost = 0;
-
-        if (isP2DuplicateByP1(id)) {
-            mode = "triple";
-            cost = 0;
-        }
-
         cur[id] = {
-            mode,
-            cost
+            mode: "free",
+            cost: 0
         };
 
         updateLowerDollarUI();
