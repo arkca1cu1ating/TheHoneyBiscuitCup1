@@ -2,25 +2,55 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>점수 계산 표</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="style.css" rel="stylesheet" />
 </head>
 
 <body>
     <div class="container">
-        <div class="player-switch-panel"><button class="player-toggle active" data-player="p1">1p</button><button
-                class="player-toggle" data-player="p2">2p</button></div>
+        <div class="top-switch-panel">
+            <div class="seed-panel">
+
+                <button id="generateSeed">
+                    시드 발급
+                </button>
+
+                <input
+                    id="seedInput"
+                    type="text"
+                    placeholder="시드 입력">
+
+                <button id="loadSeed">
+                    적용
+                </button>
+            </div>
+            <div class="language-switch-panel">
+                <button class="lang-toggle active" data-lang="ko"><span data-en="KO" data-i18n-text="1"
+                        data-ko="KO">KO</span></button>
+                <button class="lang-toggle" data-lang="en"><span data-en="EN" data-i18n-text="1"
+                        data-ko="EN">EN</span></button>
+            </div>
+            <div class="player-switch-panel">
+                <button class="player-toggle active" data-player="p1"><span data-en="1p" data-i18n-text="1"
+                        data-ko="1p">1p</span></button>
+                <button class="player-toggle" data-player="p2"><span data-en="2p" data-i18n-text="1"
+                        data-ko="2p">2p</span></button>
+            </div>
+        </div>
         <div class="player-purchase-panel">
-            <div class="player-result-row"><span>1p 구매: <span id="p1Purchase">0ⓒ</span></span><span>2p 구매: <span
-                        id="p2Purchase">0ⓒ</span></span></div>
+            <div class="player-result-row"><span><span data-en="1p Cost: " data-i18n-text="1" data-ko="1p 구매: ">1p 구매:
+                    </span><span id="p1Purchase"><span data-en="0ⓒ" data-i18n-text="1"
+                            data-ko="0ⓒ">0ⓒ</span></span></span><span><span data-en="2p Cost: " data-i18n-text="1"
+                        data-ko="2p 구매: ">2p 구매: </span><span id="p2Purchase"><span data-en="0ⓒ" data-i18n-text="1"
+                            data-ko="0ⓒ">0ⓒ</span></span></span></div>
             <table class="dollar-table player-dollar-table">
                 <tbody>
                     <tr>
-                        <th>50ⓒ</th>
-                        <td><button class="player-dollar-cell" data-id="50-1" data-dollar="50" title="50-1"><img
-                                    src="images/50-1.png" alt="50-1"></button></td>
+                        <th><span data-en="50ⓒ" data-i18n-text="1" data-ko="50ⓒ">50ⓒ</span></th>
+                        <td><button class="player-dollar-cell" data-dollar="50" data-id="50-1" title="50-1"><img
+                                    alt="50-1" src="images/50-1.png" /></button></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -28,138 +58,185 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <th>40ⓒ</th>
-                        <td><button class="player-dollar-cell" data-id="40-1" data-dollar="40" title="40-1"><img
-                                    src="images/40-1.png" alt="40-1"></button></td>
-                        <td><button class="player-dollar-cell" data-id="40-2" data-dollar="40" title="40-2"><img
-                                    src="images/40-2.png" alt="40-2"></button></td>
-                        <td><button class="player-dollar-cell" data-id="40-3" data-dollar="40" title="40-3"><img
-                                    src="images/40-3.png" alt="40-3"></button></td>
-                        <td><button class="player-dollar-cell" data-id="40-4" data-dollar="40" title="40-4"><img
-                                    src="images/40-4.png" alt="40-4"></button></td>
+                        <th><span data-en="40ⓒ" data-i18n-text="1" data-ko="40ⓒ">40ⓒ</span></th>
+                        <td><button class="player-dollar-cell" data-dollar="40" data-id="40-1" title="40-1"><img
+                                    alt="40-1" src="images/40-1.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="40" data-id="40-2" title="40-2"><img
+                                    alt="40-2" src="images/40-2.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="40" data-id="40-3" title="40-3"><img
+                                    alt="40-3" src="images/40-3.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="40" data-id="40-4" title="40-4"><img
+                                    alt="40-4" src="images/40-4.png" /></button></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <th>30ⓒ</th>
-                        <td><button class="player-dollar-cell" data-id="30-1" data-dollar="30" title="30-1"><img
-                                    src="images/30-1.png" alt="30-1"></button></td>
-                        <td><button class="player-dollar-cell" data-id="30-2" data-dollar="30" title="30-2"><img
-                                    src="images/30-2.png" alt="30-2"></button></td>
-                        <td><button class="player-dollar-cell" data-id="30-3" data-dollar="30" title="30-3"><img
-                                    src="images/30-3.png" alt="30-3"></button></td>
-                        <td><button class="player-dollar-cell" data-id="30-4" data-dollar="30" title="30-4"><img
-                                    src="images/30-4.png" alt="30-4"></button></td>
-                        <td><button class="player-dollar-cell" data-id="30-5" data-dollar="30" title="30-5"><img
-                                    src="images/30-5.png" alt="30-5"></button></td>
+                        <th><span data-en="30ⓒ" data-i18n-text="1" data-ko="30ⓒ">30ⓒ</span></th>
+                        <td><button class="player-dollar-cell" data-dollar="30" data-id="30-1" title="30-1"><img
+                                    alt="30-1" src="images/30-1.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="30" data-id="30-2" title="30-2"><img
+                                    alt="30-2" src="images/30-2.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="30" data-id="30-3" title="30-3"><img
+                                    alt="30-3" src="images/30-3.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="30" data-id="30-4" title="30-4"><img
+                                    alt="30-4" src="images/30-4.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="30" data-id="30-5" title="30-5"><img
+                                    alt="30-5" src="images/30-5.png" /></button></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <th>20ⓒ</th>
-                        <td><button class="player-dollar-cell" data-id="20-1" data-dollar="20" title="20-1"><img
-                                    src="images/20-1.png" alt="20-1"></button></td>
-                        <td><button class="player-dollar-cell" data-id="20-2" data-dollar="20" title="20-2"><img
-                                    src="images/20-2.png" alt="20-2"></button></td>
-                        <td><button class="player-dollar-cell" data-id="20-3" data-dollar="20" title="20-3"><img
-                                    src="images/20-3.png" alt="20-3"></button></td>
-                        <td><button class="player-dollar-cell" data-id="20-4" data-dollar="20" title="20-4"><img
-                                    src="images/20-4.png" alt="20-4"></button></td>
+                        <th><span data-en="20ⓒ" data-i18n-text="1" data-ko="20ⓒ">20ⓒ</span></th>
+                        <td><button class="player-dollar-cell" data-dollar="20" data-id="20-1" title="20-1"><img
+                                    alt="20-1" src="images/20-1.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="20" data-id="20-2" title="20-2"><img
+                                    alt="20-2" src="images/20-2.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="20" data-id="20-3" title="20-3"><img
+                                    alt="20-3" src="images/20-3.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="20" data-id="20-4" title="20-4"><img
+                                    alt="20-4" src="images/20-4.png" /></button></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <th>10ⓒ</th>
-                        <td><button class="player-dollar-cell" data-id="10-1" data-dollar="10" title="10-1"><img
-                                    src="images/10-1.png" alt="10-1"></button></td>
-                        <td><button class="player-dollar-cell" data-id="10-2" data-dollar="10" title="10-2"><img
-                                    src="images/10-2.png" alt="10-2"></button></td>
-                        <td><button class="player-dollar-cell" data-id="10-3" data-dollar="10" title="10-3"><img
-                                    src="images/10-3.png" alt="10-3"></button></td>
-                        <td><button class="player-dollar-cell" data-id="10-4" data-dollar="10" title="10-4"><img
-                                    src="images/10-4.png" alt="10-4"></button></td>
-                        <td><button class="player-dollar-cell" data-id="10-5" data-dollar="10" title="10-5"><img
-                                    src="images/10-5.png" alt="10-5"></button></td>
-                        <td><button class="player-dollar-cell" data-id="10-6" data-dollar="10" title="10-6"><img
-                                    src="images/10-6.png" alt="10-6"></button></td>
+                        <th><span data-en="10ⓒ" data-i18n-text="1" data-ko="10ⓒ">10ⓒ</span></th>
+                        <td><button class="player-dollar-cell" data-dollar="10" data-id="10-1" title="10-1"><img
+                                    alt="10-1" src="images/10-1.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="10" data-id="10-2" title="10-2"><img
+                                    alt="10-2" src="images/10-2.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="10" data-id="10-3" title="10-3"><img
+                                    alt="10-3" src="images/10-3.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="10" data-id="10-4" title="10-4"><img
+                                    alt="10-4" src="images/10-4.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="10" data-id="10-5" title="10-5"><img
+                                    alt="10-5" src="images/10-5.png" /></button></td>
+                        <td><button class="player-dollar-cell" data-dollar="10" data-id="10-6" title="10-6"><img
+                                    alt="10-6" src="images/10-6.png" /></button></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="score-box score-panel">최종점수: <span id="finalScore">0점</span><br>인게임 클리어 점수: <input id="ingameScore"
-                class="score-input" type="number" value="0">점<br>1번 항목: <span id="itemOneScore">0점</span><br>획득 유물 개수:
-            <input id="artifactCount" class="score-input" type="number" value="0"></div>
+        <div class="score-box score-panel"><span data-en="Final Score: " data-i18n-text="1" data-ko="최종점수: ">최종점수:
+            </span><span id="finalScore"><span data-en="0 pts" data-i18n-text="1"
+                    data-ko="0점">0점</span></span><br /><span data-en="In-Game Score: " data-i18n-text="1"
+                data-ko="인게임 클리어 점수: ">인게임 클리어 점수: </span><input class="score-input" id="ingameScore" type="number"
+                value="0" /><span data-en=" pts" data-i18n-text="1" data-ko="점">점</span><br /><span
+                data-en="Item 1 Penalty: " data-i18n-text="1" data-ko="1번 항목: ">1번 항목: </span><span
+                id="itemOneScore"><span data-en="0 pts" data-i18n-text="1" data-ko="0점">0점</span></span><br /><span
+                data-en="Number of Relics:
+            " data-i18n-text="1" data-ko="획득 유물 개수:
+            ">획득 유물 개수:
+            </span><input class="score-input" id="artifactCount" type="number" value="0" /></div>
         <div class="item-two-panel">
-            <div class="item-two-title">2번 항목: <span id="score">0점</span></div>
+            <div class="item-two-title"><span data-en="Item 2 Score: " data-i18n-text="1" data-ko="2번 항목: ">2번 항목:
+                </span><span id="score"><span data-en="0 pts" data-i18n-text="1" data-ko="0점">0점</span></span></div>
             <div class="table-gradient-separator table-gradient-top"></div>
             <table class="score-table top-table">
                 <thead>
                     <tr>
                         <th class="row-header"></th>
-                        <th><button class="table-button base-button active" disabled>기본</button></th>
-                        <th><button class="table-button select-button" data-group="top" data-key="a">완벽한 전투</button></th>
-                        <th><button class="table-button select-button" data-group="top" data-key="b"><img
-                                    src="images/망.png" alt="망"></button></th>
-                        <th><button class="table-button select-button" data-group="top" data-key="c"><img
-                                    src="images/무.png" alt="무"></button></th>
-                        <th><button class="table-button select-button" data-group="top" data-key="d"><img
-                                    src="images/흑.png" alt="흑"></button></th>
-                        <th><button class="table-button select-button" data-group="top" data-key="f"><img
-                                    src="images/의.png" alt="의"></button></th>
-                        <th><button class="table-button select-button" data-group="top" data-key="g"><img
-                                    src="images/식.png" alt="식"></button></th>
-                        <th class="total-header">합계</th>
+                        <th><button class="table-button base-button active" disabled=""><span data-en="Normal"
+                                    data-i18n-text="1" data-ko="기본">기본</span></button></th>
+                        <th><button class="table-button select-button" data-group="top" data-key="a"><span data-en="Flawless
+                                Clear" data-i18n-text="1" data-ko="완벽한 전투">완벽한 전투</span></button></th>
+                        <th><button class="table-button select-button" data-group="top" data-key="b"><img alt="망"
+                                    src="images/망.png" /></button></th>
+                        <th><button class="table-button select-button" data-group="top" data-key="c"><img alt="무"
+                                    src="images/무.png" /></button></th>
+                        <th><button class="table-button select-button" data-group="top" data-key="d"><img alt="흑"
+                                    src="images/흑.png" /></button></th>
+                        <th><button class="table-button select-button" data-group="top" data-key="f"><img alt="의"
+                                    src="images/의.png" /></button></th>
+                        <th><button class="table-button select-button" data-group="top" data-key="g"><img alt="식"
+                                    src="images/식.png" /></button></th>
+                        <th class="total-header"><span data-en="Total" data-i18n-text="1" data-ko="합계">합계</span></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr data-group="top" data-row="1">
                         <td class="row-label"><button class="id-button row-button image-row-button row-purple"
-                                data-group="top" data-row="1" title="1-1"><img src="images/1.png" alt="1-1"></button>
+                                data-group="top" data-row="1" title="1-1"><img alt="1-1" src="images/1.png" /></button>
                         </td>
-                        <td class="score-cell" data-group="top" data-row="1" data-score="base">-50</td>
-                        <td class="score-cell" data-group="top" data-row="1" data-score="a">+10</td>
-                        <td class="score-cell group-score" data-group="top" data-row="1" data-score="bcd" colspan="3">
-                            +40</td>
-                        <td class="score-cell group-score" data-group="top" data-row="1" data-score="fg" colspan="2">
-                            +100</td>
-                        <td class="total-cell" data-group="top" data-row-total="1">0점</td>
+                        <td class="score-cell" data-group="top" data-row="1" data-score="base"><span data-en="-50"
+                                data-i18n-text="1" data-ko="-50">-50</span></td>
+                        <td class="score-cell" data-group="top" data-row="1" data-score="a"><span data-en="+10"
+                                data-i18n-text="1" data-ko="+10">+10</span></td>
+                        <td class="score-cell group-score" colspan="3" data-group="top" data-row="1" data-score="bcd">
+                            <span data-en="
+                            +40" data-i18n-text="1" data-ko="
+                            +40">
+                                +40</span></td>
+                        <td class="score-cell group-score" colspan="2" data-group="top" data-row="1" data-score="fg">
+                            <span data-en="
+                            +100" data-i18n-text="1" data-ko="
+                            +100">
+                                +100</span></td>
+                        <td class="total-cell" data-group="top" data-row-total="1"><span data-en="0 pts"
+                                data-i18n-text="1" data-ko="0점">0점</span></td>
                     </tr>
                     <tr data-group="top" data-row="2">
                         <td class="row-label"><button class="id-button row-button image-row-button row-red"
-                                data-group="top" data-row="2" title="1-2"><img src="images/1.png" alt="1-2"></button>
+                                data-group="top" data-row="2" title="1-2"><img alt="1-2" src="images/1.png" /></button>
                         </td>
-                        <td class="score-cell" data-group="top" data-row="2" data-score="base">+0</td>
-                        <td class="score-cell" data-group="top" data-row="2" data-score="a">+10</td>
-                        <td class="score-cell group-score" data-group="top" data-row="2" data-score="bc" colspan="2">+50
-                        </td>
+                        <td class="score-cell" data-group="top" data-row="2" data-score="base"><span data-en="+0"
+                                data-i18n-text="1" data-ko="+0">+0</span></td>
+                        <td class="score-cell" data-group="top" data-row="2" data-score="a"><span data-en="+10"
+                                data-i18n-text="1" data-ko="+10">+10</span></td>
+                        <td class="score-cell group-score" colspan="2" data-group="top" data-row="2" data-score="bc">
+                            <span data-en="+50
+                        " data-i18n-text="1" data-ko="+50
+                        ">+50
+                            </span></td>
                         <td class="empty-cell"></td>
-                        <td class="score-cell group-score" data-group="top" data-row="2" data-score="fg" colspan="2">
-                            +100</td>
-                        <td class="total-cell" data-group="top" data-row-total="2">0점</td>
+                        <td class="score-cell group-score" colspan="2" data-group="top" data-row="2" data-score="fg">
+                            <span data-en="
+                            +100" data-i18n-text="1" data-ko="
+                            +100">
+                                +100</span></td>
+                        <td class="total-cell" data-group="top" data-row-total="2"><span data-en="0 pts"
+                                data-i18n-text="1" data-ko="0점">0점</span></td>
                     </tr>
                     <tr data-group="top" data-row="3">
                         <td class="row-label"><button class="id-button row-button image-row-button row-purple"
-                                data-group="top" data-row="3" title="2-1"><img src="images/2.png" alt="2-1"></button>
+                                data-group="top" data-row="3" title="2-1"><img alt="2-1" src="images/2.png" /></button>
                         </td>
-                        <td class="score-cell" data-group="top" data-row="3" data-score="base">+60</td>
-                        <td class="score-cell" data-group="top" data-row="3" data-score="a">+80</td>
-                        <td class="score-cell group-score" data-group="top" data-row="3" data-score="bcd" colspan="3">
-                            +120</td>
-                        <td class="score-cell group-score" data-group="top" data-row="3" data-score="fg" colspan="2">
-                            +100</td>
-                        <td class="total-cell" data-group="top" data-row-total="3">0점</td>
+                        <td class="score-cell" data-group="top" data-row="3" data-score="base"><span data-en="+60"
+                                data-i18n-text="1" data-ko="+60">+60</span></td>
+                        <td class="score-cell" data-group="top" data-row="3" data-score="a"><span data-en="+80"
+                                data-i18n-text="1" data-ko="+80">+80</span></td>
+                        <td class="score-cell group-score" colspan="3" data-group="top" data-row="3" data-score="bcd">
+                            <span data-en="
+                            +120" data-i18n-text="1" data-ko="
+                            +120">
+                                +120</span></td>
+                        <td class="score-cell group-score" colspan="2" data-group="top" data-row="3" data-score="fg">
+                            <span data-en="
+                            +100" data-i18n-text="1" data-ko="
+                            +100">
+                                +100</span></td>
+                        <td class="total-cell" data-group="top" data-row-total="3"><span data-en="0 pts"
+                                data-i18n-text="1" data-ko="0점">0점</span></td>
                     </tr>
                     <tr data-group="top" data-row="4">
                         <td class="row-label"><button class="id-button row-button image-row-button row-red"
-                                data-group="top" data-row="4" title="2-2"><img src="images/2.png" alt="2-2"></button>
+                                data-group="top" data-row="4" title="2-2"><img alt="2-2" src="images/2.png" /></button>
                         </td>
-                        <td class="score-cell" data-group="top" data-row="4" data-score="base">+80</td>
-                        <td class="score-cell" data-group="top" data-row="4" data-score="a">+120</td>
-                        <td class="score-cell group-score" data-group="top" data-row="4" data-score="bc" colspan="2">
-                            +100</td>
+                        <td class="score-cell" data-group="top" data-row="4" data-score="base"><span data-en="+80"
+                                data-i18n-text="1" data-ko="+80">+80</span></td>
+                        <td class="score-cell" data-group="top" data-row="4" data-score="a"><span data-en="+120"
+                                data-i18n-text="1" data-ko="+120">+120</span></td>
+                        <td class="score-cell group-score" colspan="2" data-group="top" data-row="4" data-score="bc">
+                            <span data-en="
+                            +100" data-i18n-text="1" data-ko="
+                            +100">
+                                +100</span></td>
                         <td class="empty-cell"></td>
-                        <td class="score-cell group-score" data-group="top" data-row="4" data-score="fg" colspan="2">
-                            +100</td>
-                        <td class="total-cell" data-group="top" data-row-total="4">0점</td>
+                        <td class="score-cell group-score" colspan="2" data-group="top" data-row="4" data-score="fg">
+                            <span data-en="
+                            +100" data-i18n-text="1" data-ko="
+                            +100">
+                                +100</span></td>
+                        <td class="total-cell" data-group="top" data-row-total="4"><span data-en="0 pts"
+                                data-i18n-text="1" data-ko="0점">0점</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -168,47 +245,63 @@
                 <thead>
                     <tr>
                         <th class="row-header"></th>
-                        <th><button class="table-button base-button active" disabled>기본</button></th>
-                        <th><button class="table-button select-button" data-group="bottom" data-key="a">완벽한 전투</button></th>
-                        <th><button class="table-button select-button" data-group="bottom" data-key="b"><img
-                                    src="images/망.png" alt="망"></button></th>
-                        <th><button class="table-button select-button" data-group="bottom" data-key="c"><img
-                                    src="images/무.png" alt="무"></button></th>
-                        <th><button class="table-button select-button" data-group="bottom" data-key="d"><img
-                                    src="images/흑.png" alt="흑"></button></th>
-                        <th><button class="table-button select-button" data-group="bottom" data-key="f"><img
-                                    src="images/의.png" alt="의"></button></th>
-                        <th><button class="table-button select-button" data-group="bottom" data-key="g"><img
-                                    src="images/식.png" alt="식"></button></th>
-                        <th class="total-header">합계</th>
+                        <th><button class="table-button base-button active" disabled=""><span data-en="Normal"
+                                    data-i18n-text="1" data-ko="기본">기본</span></button></th>
+                        <th><button class="table-button select-button" data-group="bottom" data-key="a"><span data-en="Flawless
+                                Clear" data-i18n-text="1" data-ko="완벽한 전투">완벽한 전투</span></button></th>
+                        <th><button class="table-button select-button" data-group="bottom" data-key="b"><img alt="망"
+                                    src="images/망.png" /></button></th>
+                        <th><button class="table-button select-button" data-group="bottom" data-key="c"><img alt="무"
+                                    src="images/무.png" /></button></th>
+                        <th><button class="table-button select-button" data-group="bottom" data-key="d"><img alt="흑"
+                                    src="images/흑.png" /></button></th>
+                        <th><button class="table-button select-button" data-group="bottom" data-key="f"><img alt="의"
+                                    src="images/의.png" /></button></th>
+                        <th><button class="table-button select-button" data-group="bottom" data-key="g"><img alt="식"
+                                    src="images/식.png" /></button></th>
+                        <th class="total-header"><span data-en="Total" data-i18n-text="1" data-ko="합계">합계</span></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr data-group="bottom" data-row="5">
                         <td class="row-label"><button class="id-button row-button image-row-button row-purple"
-                                data-group="bottom" data-row="5" title="3"><img src="images/3.png" alt="3"></button>
+                                data-group="bottom" data-row="5" title="3"><img alt="3" src="images/3.png" /></button>
                         </td>
-                        <td class="score-cell" data-group="bottom" data-row="5" data-score="base">+80</td>
-                        <td class="score-cell" data-group="bottom" data-row="5" data-score="a">+160</td>
+                        <td class="score-cell" data-group="bottom" data-row="5" data-score="base"><span data-en="+80"
+                                data-i18n-text="1" data-ko="+80">+80</span></td>
+                        <td class="score-cell" data-group="bottom" data-row="5" data-score="a"><span data-en="+160"
+                                data-i18n-text="1" data-ko="+160">+160</span></td>
                         <td class="empty-cell"></td>
-                        <td class="score-cell" data-group="bottom" data-row="5" data-score="c">+100</td>
+                        <td class="score-cell" data-group="bottom" data-row="5" data-score="c"><span data-en="+100"
+                                data-i18n-text="1" data-ko="+100">+100</span></td>
                         <td class="empty-cell"></td>
-                        <td class="score-cell group-score" data-group="bottom" data-row="5" data-score="fg" colspan="2">
-                            +100</td>
-                        <td class="total-cell" data-group="bottom" data-row-total="5">0점</td>
+                        <td class="score-cell group-score" colspan="2" data-group="bottom" data-row="5" data-score="fg">
+                            <span data-en="
+                            +100" data-i18n-text="1" data-ko="
+                            +100">
+                                +100</span></td>
+                        <td class="total-cell" data-group="bottom" data-row-total="5"><span data-en="0 pts"
+                                data-i18n-text="1" data-ko="0점">0점</span></td>
                     </tr>
                     <tr data-group="bottom" data-row="6">
                         <td class="row-label"><button class="id-button row-button image-row-button row-purple"
-                                data-group="bottom" data-row="6" title="4"><img src="images/4.png" alt="4"></button>
+                                data-group="bottom" data-row="6" title="4"><img alt="4" src="images/4.png" /></button>
                         </td>
-                        <td class="score-cell" data-group="bottom" data-row="6" data-score="base">+100</td>
-                        <td class="score-cell" data-group="bottom" data-row="6" data-score="a">+160</td>
-                        <td class="score-cell" data-group="bottom" data-row="6" data-score="b">+60</td>
+                        <td class="score-cell" data-group="bottom" data-row="6" data-score="base"><span data-en="+100"
+                                data-i18n-text="1" data-ko="+100">+100</span></td>
+                        <td class="score-cell" data-group="bottom" data-row="6" data-score="a"><span data-en="+160"
+                                data-i18n-text="1" data-ko="+160">+160</span></td>
+                        <td class="score-cell" data-group="bottom" data-row="6" data-score="b"><span data-en="+60"
+                                data-i18n-text="1" data-ko="+60">+60</span></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
-                        <td class="score-cell group-score" data-group="bottom" data-row="6" data-score="fg" colspan="2">
-                            +100</td>
-                        <td class="total-cell" data-group="bottom" data-row-total="6">0점</td>
+                        <td class="score-cell group-score" colspan="2" data-group="bottom" data-row="6" data-score="fg">
+                            <span data-en="
+                            +100" data-i18n-text="1" data-ko="
+                            +100">
+                                +100</span></td>
+                        <td class="total-cell" data-group="bottom" data-row-total="6"><span data-en="0 pts"
+                                data-i18n-text="1" data-ko="0점">0점</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -217,168 +310,269 @@
                 <thead>
                     <tr>
                         <th class="row-header"></th>
-                        <th><button class="table-button base-button active" disabled>기본</button></th>
-                        <th><button class="table-button select-button" data-group="five" data-key="a">완벽한 전투</button></th>
-                        <th><button class="table-button select-button" data-group="five" data-key="b"><img
-                                    src="images/망.png" alt="망"></button></th>
-                        <th><button class="table-button select-button" data-group="five" data-key="c"><img
-                                    src="images/무.png" alt="무"></button></th>
-                        <th><button class="table-button select-button" data-group="five" data-key="d"><img
-                                    src="images/흑.png" alt="흑"></button></th>
-                        <th><button class="table-button select-button" data-group="five" data-key="f"><img
-                                    src="images/의.png" alt="의"></button></th>
-                        <th><button class="table-button select-button" data-group="five" data-key="g"><img
-                                    src="images/식.png" alt="식"></button></th>
-                        <th class="total-header">합계</th>
+                        <th><button class="table-button base-button active" disabled=""><span data-en="Normal"
+                                    data-i18n-text="1" data-ko="기본">기본</span></button></th>
+                        <th><button class="table-button select-button" data-group="five" data-key="a"><span data-en="Flawless
+                                Clear" data-i18n-text="1" data-ko="완벽한 전투">완벽한 전투</span></button></th>
+                        <th><button class="table-button select-button" data-group="five" data-key="b"><img alt="망"
+                                    src="images/망.png" /></button></th>
+                        <th><button class="table-button select-button" data-group="five" data-key="c"><img alt="무"
+                                    src="images/무.png" /></button></th>
+                        <th><button class="table-button select-button" data-group="five" data-key="d"><img alt="흑"
+                                    src="images/흑.png" /></button></th>
+                        <th><button class="table-button select-button" data-group="five" data-key="f"><img alt="의"
+                                    src="images/의.png" /></button></th>
+                        <th><button class="table-button select-button" data-group="five" data-key="g"><img alt="식"
+                                    src="images/식.png" /></button></th>
+                        <th class="total-header"><span data-en="Total" data-i18n-text="1" data-ko="합계">합계</span></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr data-group="five" data-row="7">
                         <td class="row-label"><button class="id-button row-button image-row-button row-purple"
-                                data-group="five" data-row="7" title="5"><img src="images/5.png" alt="5"></button></td>
-                        <td class="score-cell" data-group="five" data-row="7" data-score="base" data-any="0">+0</td>
-                        <td class="score-cell" data-group="five" data-row="7" data-score="a" data-any="20">+20</td>
+                                data-group="five" data-row="7" title="5"><img alt="5" src="images/5.png" /></button>
+                        </td>
+                        <td class="score-cell" data-any="0" data-group="five" data-row="7" data-score="base"><span
+                                data-en="+0" data-i18n-text="1" data-ko="+0">+0</span></td>
+                        <td class="score-cell" data-any="20" data-group="five" data-row="7" data-score="a"><span
+                                data-en="+20" data-i18n-text="1" data-ko="+20">+20</span></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
-                        <td class="total-cell" data-group="five" data-row-total="7">0점</td>
+                        <td class="total-cell" data-group="five" data-row-total="7"><span data-en="0 pts"
+                                data-i18n-text="1" data-ko="0점">0점</span></td>
                     </tr>
                     <tr data-group="five" data-row="8">
                         <td class="row-label"><button class="id-button row-button image-row-button row-red"
-                                data-group="five" data-row="8" title="5-1"><img src="images/1.png" alt="5-1"></button>
+                                data-group="five" data-row="8" title="5-1"><img alt="5-1" src="images/1.png" /></button>
                         </td>
-                        <td class="score-cell" data-group="five" data-row="8" data-score="base" data-a="60" data-b="20">
-                            +60</td>
+                        <td class="score-cell" data-a="60" data-b="20" data-group="five" data-row="8" data-score="base">
+                            <span data-en="
+                            +60" data-i18n-text="1" data-ko="
+                            +60">
+                                +60</span></td>
                         <td class="empty-cell"></td>
-                        <td class="score-cell" data-group="five" data-row="8" data-score="b" data-b="30"></td>
-                        <td class="score-cell" data-group="five" data-row="8" data-score="c" data-a="20">+20</td>
+                        <td class="score-cell" data-b="30" data-group="five" data-row="8" data-score="b"></td>
+                        <td class="score-cell" data-a="20" data-group="five" data-row="8" data-score="c"><span
+                                data-en="+20" data-i18n-text="1" data-ko="+20">+20</span></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
-                        <td class="total-cell" data-group="five" data-row-total="8">0점</td>
+                        <td class="total-cell" data-group="five" data-row-total="8"><span data-en="0 pts"
+                                data-i18n-text="1" data-ko="0점">0점</span></td>
                     </tr>
                     <tr data-group="five" data-row="9">
                         <td class="row-label"><button class="id-button row-button image-row-button row-red"
-                                data-group="five" data-row="9" title="5-2"><img src="images/2.png" alt="5-2"></button>
+                                data-group="five" data-row="9" title="5-2"><img alt="5-2" src="images/2.png" /></button>
                         </td>
-                        <td class="score-cell" data-group="five" data-row="9" data-score="base" data-a="200"
-                            data-b="100">+200</td>
-                        <td class="score-cell" data-group="five" data-row="9" data-score="a" data-a="60" data-b="40">+60
-                        </td>
-                        <td class="score-cell" data-group="five" data-row="9" data-score="b" data-b="40"></td>
-                        <td class="score-cell" data-group="five" data-row="9" data-score="c" data-a="40">+40</td>
+                        <td class="score-cell" data-a="200" data-b="100" data-group="five" data-row="9"
+                            data-score="base"><span data-en="+200" data-i18n-text="1" data-ko="+200">+200</span></td>
+                        <td class="score-cell" data-a="60" data-b="40" data-group="five" data-row="9" data-score="a">
+                            <span data-en="+60
+                        " data-i18n-text="1" data-ko="+60
+                        ">+60
+                            </span></td>
+                        <td class="score-cell" data-b="40" data-group="five" data-row="9" data-score="b"></td>
+                        <td class="score-cell" data-a="40" data-group="five" data-row="9" data-score="c"><span
+                                data-en="+40" data-i18n-text="1" data-ko="+40">+40</span></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
-                        <td class="total-cell" data-group="five" data-row-total="9">0점</td>
+                        <td class="total-cell" data-group="five" data-row-total="9"><span data-en="0 pts"
+                                data-i18n-text="1" data-ko="0점">0점</span></td>
                     </tr>
                     <tr data-group="five" data-row="10">
                         <td class="row-label"><button class="id-button row-button image-row-button row-red"
-                                data-group="five" data-row="10" title="5-3"><img src="images/3.png" alt="5-3"></button>
+                                data-group="five" data-row="10" title="5-3"><img alt="5-3"
+                                    src="images/3.png" /></button>
                         </td>
-                        <td class="score-cell" data-group="five" data-row="10" data-score="base" data-a="200">+200</td>
-                        <td class="score-cell" data-group="five" data-row="10" data-score="a" data-a="80">+80</td>
+                        <td class="score-cell" data-a="200" data-group="five" data-row="10" data-score="base"><span
+                                data-en="+200" data-i18n-text="1" data-ko="+200">+200</span></td>
+                        <td class="score-cell" data-a="80" data-group="five" data-row="10" data-score="a"><span
+                                data-en="+80" data-i18n-text="1" data-ko="+80">+80</span></td>
                         <td class="empty-cell"></td>
-                        <td class="score-cell" data-group="five" data-row="10" data-score="c" data-a="80">+80</td>
+                        <td class="score-cell" data-a="80" data-group="five" data-row="10" data-score="c"><span
+                                data-en="+80" data-i18n-text="1" data-ko="+80">+80</span></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
-                        <td class="total-cell" data-group="five" data-row-total="10">0점</td>
+                        <td class="total-cell" data-group="five" data-row-total="10"><span data-en="0 pts"
+                                data-i18n-text="1" data-ko="0점">0점</span></td>
                     </tr>
                     <tr data-group="five" data-row="11">
                         <td class="row-label"><button class="id-button row-button image-row-button row-red"
-                                data-group="five" data-row="11" title="5-4"><img src="images/4-1.webp"
-                                    alt="5-4"></button></td>
-                        <td class="score-cell" data-group="five" data-row="11" data-score="base" data-b="20"></td>
+                                data-group="five" data-row="11" title="5-4"><img alt="5-4"
+                                    src="images/4-1.webp" /></button></td>
+                        <td class="score-cell" data-b="20" data-group="five" data-row="11" data-score="base"></td>
                         <td class="empty-cell"></td>
-                        <td class="score-cell" data-group="five" data-row="11" data-score="b" data-b="20"></td>
-                        <td class="empty-cell"></td>
-                        <td class="empty-cell"></td>
+                        <td class="score-cell" data-b="20" data-group="five" data-row="11" data-score="b"></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
-                        <td class="total-cell" data-group="five" data-row-total="11">0점</td>
+                        <td class="empty-cell"></td>
+                        <td class="empty-cell"></td>
+                        <td class="total-cell" data-group="five" data-row-total="11"><span data-en="0 pts"
+                                data-i18n-text="1" data-ko="0점">0점</span></td>
                     </tr>
                     <tr data-group="five" data-row="13">
                         <td class="row-label"><button class="id-button row-button image-row-button row-red"
-                                data-group="five" data-row="13" title="5-6"><img src="images/5-2.png"
-                                    alt="5-6"></button></td>
-                        <td class="score-cell" data-group="five" data-row="13" data-score="base" data-a="400"
-                            data-b="325">+400</td>
-                        <td class="score-cell" data-group="five" data-row="13" data-score="a" data-a="600" data-b="475">
-                            +600</td>
-                        <td class="score-cell" data-group="five" data-row="13" data-score="b" data-b="90"></td>
-                        <td class="score-cell" data-group="five" data-row="13" data-score="c" data-a="100">+100</td>
+                                data-group="five" data-row="13" title="5-6"><img alt="5-6"
+                                    src="images/5-2.png" /></button></td>
+                        <td class="score-cell" data-a="400" data-b="325" data-group="five" data-row="13"
+                            data-score="base"><span data-en="+400" data-i18n-text="1" data-ko="+400">+400</span></td>
+                        <td class="score-cell" data-a="600" data-b="475" data-group="five" data-row="13" data-score="a">
+                            <span data-en="
+                            +600" data-i18n-text="1" data-ko="
+                            +600">
+                                +600</span></td>
+                        <td class="score-cell" data-b="90" data-group="five" data-row="13" data-score="b"></td>
+                        <td class="score-cell" data-a="100" data-group="five" data-row="13" data-score="c"><span
+                                data-en="+100" data-i18n-text="1" data-ko="+100">+100</span></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
-                        <td class="total-cell" data-group="five" data-row-total="13">0점</td>
+                        <td class="total-cell" data-group="five" data-row-total="13"><span data-en="0 pts"
+                                data-i18n-text="1" data-ko="0점">0점</span></td>
                     </tr>
                     <tr data-group="five" data-row="12">
                         <td class="row-label"><button class="id-button row-button image-row-button row-purple"
-                                data-group="five" data-row="12" title="5-5"><img src="images/5-2.png"
-                                    alt="5-5"></button></td>
-                        <td class="score-cell" data-group="five" data-row="12" data-score="base" data-a="350"
-                            data-b="240">+350</td>
-                        <td class="score-cell" data-group="five" data-row="12" data-score="a" data-a="620" data-b="320">
-                            +620</td>
-                        <td class="score-cell" data-group="five" data-row="12" data-score="b" data-b="80"></td>
-                        <td class="score-cell" data-group="five" data-row="12" data-score="c" data-a="80">+80</td>
+                                data-group="five" data-row="12" title="5-5"><img alt="5-5"
+                                    src="images/5-2.png" /></button></td>
+                        <td class="score-cell" data-a="350" data-b="240" data-group="five" data-row="12"
+                            data-score="base"><span data-en="+350" data-i18n-text="1" data-ko="+350">+350</span></td>
+                        <td class="score-cell" data-a="620" data-b="320" data-group="five" data-row="12" data-score="a">
+                            <span data-en="
+                            +620" data-i18n-text="1" data-ko="
+                            +620">
+                                +620</span></td>
+                        <td class="score-cell" data-b="80" data-group="five" data-row="12" data-score="b"></td>
+                        <td class="score-cell" data-a="80" data-group="five" data-row="12" data-score="c"><span
+                                data-en="+80" data-i18n-text="1" data-ko="+80">+80</span></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
                         <td class="empty-cell"></td>
-                        <td class="total-cell" data-group="five" data-row-total="12">0점</td>
+                        <td class="total-cell" data-group="five" data-row-total="12"><span data-en="0 pts"
+                                data-i18n-text="1" data-ko="0점">0점</span></td>
                     </tr>
                 </tbody>
             </table>
             <div class="table-gradient-separator table-gradient-bottom"></div>
         </div>
         <div class="multiplier-panel">
-            <div class="multiplier-result">3번 항목: <span id="itemThreeMultiplier">1배</span></div>
+            <div class="multiplier-result"><span data-en="Item 3: " data-i18n-text="1" data-ko="3번 항목: ">3번 항목:
+                </span><span id="itemThreeMultiplier"><span data-en="1x" data-i18n-text="1"
+                        data-ko="1배">1배</span></span></div>
             <div class="checklist-box">
-                <div class="checklist-title">3번 체크리스트</div><label><input type="checkbox" class="item-three-check"
-                        data-multiplier="1.15"> 3층 보스전에서 불사+불식을 동시에 보유: 1.15배율</label><label><input type="checkbox"
-                        class="item-three-check" data-multiplier="1.05"> 4층 마지막 노드를 통과한 시점에서 불사+불식을 동시에 보유:
-                    1.05배율</label><label><input type="checkbox" class="item-three-check" data-multiplier="1.35"> 최종 5엔딩
-                    보스전에서 불사+불식을 동시에 보유: 1.35배율</label><label><input type="checkbox" class="item-three-check"
-                        data-multiplier="1.1"> 최종 5엔딩 보스전에서 불사, 불식 중 1개만 보유: 1.1배율</label><label><input type="checkbox"
-                        class="item-three-check" data-multiplier="1.01"> 최종 5엔딩 보스전을 6층에서 클리어한 경우:
-                    1.01배율</label><label><input type="checkbox" class="item-three-check" data-multiplier="1.2"> 각 팀은 이, 쉐이, 왕, 허우서우, 숴의 육신을 최소 1회씩 처치 성공(예시: 135+245, 235+145, 145+235, 25+245풀강 등):
-                    1.2배율</label><label><input type="checkbox" class="item-three-check" data-multiplier="1.01"> 1시간 이내로
-                    플레이 완료: 1.01배율</label><label><input type="checkbox" class="item-three-check" data-multiplier="0.9">
-                    3시간 초과로 플레이 완료: 0.9배율</label><label><input type="checkbox" class="item-three-check"
-                        data-multiplier="0.95"> 5층 보스전 이전에 패배: 0.95배율</label><label><input type="checkbox"
-                        class="item-three-check" data-multiplier="0.6"> 5층에 도달하지 못한 경우: 0.6배율</label><label
-                    class="inline-input-label">케오베를 편성하고 클리어한 보스전마다: 최종 점수에 1.005배율 <input id="keobeBossCount"
-                        class="small-number-input" type="number" value="0" min="0"> 회</label>
-            </div><br>
-            <div class="multiplier-result">4번 항목: <span id="itemFourMultiplier">1배</span></div>
+                <div class="checklist-title"><span data-en="Item 3 Checklist" data-i18n-text="1" data-ko="3번 체크리스트">3번
+                        체크리스트</span></div><label><input class="item-three-check" data-multiplier="1.15"
+                        type="checkbox" /><span data-en=" Have Merciless + Ceaseless at F3 Boss:
+                    1.15x" data-i18n-text="1" data-ko=" 3층 보스전에서 불사+불식을 동시에 보유: 1.15배율"> 3층 보스전에서 불사+불식을 동시에 보유:
+                        1.15배율</span></label><label><input class="item-three-check" data-multiplier="1.05"
+                        type="checkbox" /><span data-en=" Have
+                    Merciless + Ceaseless upon passing final node of F4:
+                    1.05x" data-i18n-text="1" data-ko=" 4층 마지막 노드를 통과한 시점에서 불사+불식을 동시에 보유:
+                    1.05배율"> 4층 마지막 노드를 통과한 시점에서 불사+불식을 동시에 보유:
+                        1.05배율</span></label><label><input class="item-three-check" data-multiplier="1.35"
+                        type="checkbox" /><span data-en=" Have
+                    Merciless + Ceaseless at Final Ending 5 Boss Fight: 1.35x" data-i18n-text="1" data-ko=" 최종 5엔딩
+                    보스전에서 불사+불식을 동시에 보유: 1.35배율"> 최종 5엔딩
+                        보스전에서 불사+불식을 동시에 보유: 1.35배율</span></label><label><input class="item-three-check"
+                        data-multiplier="1.1" type="checkbox" /><span data-en=" Have only 1 of Merciless or Ceaseless at Final
+                    Ending 5 Boss Fight: 1.1x" data-i18n-text="1" data-ko=" 최종 5엔딩 보스전에서 불사, 불식 중 1개만 보유: 1.1배율"> 최종
+                        5엔딩 보스전에서 불사, 불식 중 1개만 보유: 1.1배율</span></label><label><input class="item-three-check"
+                        data-multiplier="1.01" type="checkbox" /><span data-en=" Clear Ending 5 Boss Fight on F6:
+                    1.01x" data-i18n-text="1" data-ko=" 최종 5엔딩 보스전을 6층에서 클리어한 경우:
+                    1.01배율"> 최종 5엔딩 보스전을 6층에서 클리어한 경우:
+                        1.01배율</span></label><label><input class="item-three-check" data-multiplier="1.2"
+                        type="checkbox" /><span data-en=" The TEAM
+                    has defeated each of Yi, Sui, Wang, Bestial Hou and Bestial Ju at least once (Examples: 135+245,
+                    235+145, 145+235, 25+245 Wage War):
+                    1.2x" data-i18n-text="1" data-ko=" 각 팀은 이, 쉐이, 왕, 허우서우, 숴의 육신을 최소 1회씩 처치 성공(예시: 135+245, 235+145, 145+235, 25+245풀강 등):
+                    1.2배율"> 각 팀은 이, 쉐이, 왕, 허우서우, 숴의 육신을 최소 1회씩 처치 성공(예시: 135+245, 235+145, 145+235, 25+245풀강 등):
+                        1.2배율</span></label><label><input class="item-three-check" data-multiplier="1.01"
+                        type="checkbox" /><span data-en=" Run Time
+                    is less than 1 hour: 1.01x" data-i18n-text="1" data-ko=" 1시간 이내로
+                    플레이 완료: 1.01배율"> 1시간 이내로
+                        플레이 완료: 1.01배율</span></label><label><input class="item-three-check" data-multiplier="0.9"
+                        type="checkbox" /><span data-en="
+                    Run Time is more than 3 hours: 0.9x" data-i18n-text="1" data-ko="
+                    3시간 초과로 플레이 완료: 0.9배율">
+                        3시간 초과로 플레이 완료: 0.9배율</span></label>
+                    <label>
+                        <input type="checkbox" class="item-three-check" data-multiplier="0.5">
+                        <span
+                            data-i18n-text="1"
+                            data-ko="4시간 초과로 플레이 완료: 0.5배율"
+                            data-en="Run Time is more than 4 hours: 0.5x">
+                            4시간 초과로 플레이 완료: 0.5배율
+                        </span>
+                    </label>
+                        <label><input class="item-three-check"
+                        data-multiplier="0.95" type="checkbox" /><span data-en=" Perished after reaching F5 but before F5 Boss:
+                    0.95x" data-i18n-text="1" data-ko=" 5층 보스전 이전에 패배: 0.95배율"> 5층 보스전 이전에 패배:
+                        0.95배율</span></label><label><input class="item-three-check" data-multiplier="0.6"
+                        type="checkbox" /><span data-en=" Perished
+                    before reaching F5: 0.6x" data-i18n-text="1" data-ko=" 5층에 도달하지 못한 경우: 0.6배율"> 5층에 도달하지 못한 경우:
+                        0.6배율</span></label><label class="inline-input-label"><span data-en="Number of boss fights cleared with
+                    Ceobe in Squad (1.005x final score multiplier per fight) " data-i18n-text="1"
+                        data-ko="케오베를 편성하고 클리어한 보스전마다: 최종 점수에 1.005배율 ">케오베를 편성하고 클리어한 보스전마다: 최종 점수에 1.005배율
+                    </span><input class="small-number-input" id="keobeBossCount" min="0" type="number" value="0" /><span
+                        data-en=" Boss Fights" data-i18n-text="1" data-ko=" 회"> 회</span></label>
+            </div><br />
+            <div class="multiplier-result"><span data-en="Item 4: " data-i18n-text="1" data-ko="4번 항목: ">4번 항목:
+                </span><span id="itemFourMultiplier"><span data-en="1x" data-i18n-text="1" data-ko="1배">1배</span></span>
+            </div>
             <div class="checklist-box">
-                <div class="checklist-title">4번 체크리스트</div><label><input type="radio" name="item-four"
-                        class="item-four-radio" value="0.8"> 0.8배율: 천사부 분대</label><label><input type="radio"
-                        name="item-four" class="item-four-radio" value="0.85"> 0.85배율: 대리인 분대</label><label><input
-                        type="radio" name="item-four" class="item-four-radio" value="0.9"> 0.9배율: 관광객 분대, 상인
-                    분대</label><label><input type="radio" name="item-four" class="item-four-radio" value="1" checked>
-                    1배율: 초강수 분대</label><label><input type="radio" name="item-four" class="item-four-radio" value="1.2">
-                    1.2배율: 꽃다발 분대</label><label><input type="radio" name="item-four" class="item-four-radio"
-                        value="1.3"> 1.3배율: 학자 분대, 지원 분대, 특근 분대</label><label><input type="radio" name="item-four"
-                        class="item-four-radio" value="1.35"> 1.35배율: 지휘 분대, 파괴 전술 분대, 방어 전술 분대</label><label><input
-                        type="radio" name="item-four" class="item-four-radio" value="1.4"> 1.4배율: 쉐이 울림 분대, 강습 전술 분대,
-                    사세대 분대</label><label><input type="radio" name="item-four" class="item-four-radio" value="1.5">
-                    1.5배율: 원거리 전술 분대, 고지대/지상 돌파 분대</label><label><input type="radio" name="item-four"
-                        class="item-four-radio" value="1.6"> 1.6배율: 고급화 분대</label>
-            </div><br>
+                <div class="checklist-title"><span data-en="Item 4: Starting Squad Multipliers" data-i18n-text="1"
+                        data-ko="4번 체크리스트">4번 체크리스트</span></div><label><input class="item-four-radio" name="item-four"
+                        type="radio" value="0.8" /><span data-en=" 0.8x: Tianshi Bureau
+                    Squad" data-i18n-text="1" data-ko=" 0.8배율: 천사부 분대"> 0.8배율: 천사부 분대</span></label><label><input
+                        class="item-four-radio" name="item-four" type="radio" value="0.85" /><span data-en="
+                    0.85x: Proxy Squad" data-i18n-text="1" data-ko=" 0.85배율: 대리인 분대"> 0.85배율: 대리인
+                        분대</span></label><label><input class="item-four-radio" name="item-four" type="radio"
+                        value="0.9" /><span data-en=" 0.9x: Tourist Squad, Merchant Squad" data-i18n-text="1" data-ko=" 0.9배율: 관광객 분대, 상인
+                    분대"> 0.9배율: 관광객 분대, 상인
+                        분대</span></label><label><input checked="" class="item-four-radio" name="item-four" type="radio"
+                        value="1" /><span data-en="
+                    1.0x: Perilous Game Squad" data-i18n-text="1" data-ko="
+                    1배율: 초강수 분대">
+                        1배율: 초강수 분대</span></label><label><input class="item-four-radio" name="item-four" type="radio"
+                        value="1.2" /><span data-en="
+                    1.2x: Blooming Flowers Squad" data-i18n-text="1" data-ko="
+                    1.2배율: 꽃다발 분대">
+                        1.2배율: 꽃다발 분대</span></label><label><input class="item-four-radio" name="item-four" type="radio"
+                        value="1.3" /><span data-en=" 1.3x: Knowledge Squad, Support Squad, Special
+                    Squad" data-i18n-text="1" data-ko=" 1.3배율: 학자 분대, 지원 분대, 특근 분대"> 1.3배율: 학자 분대, 지원 분대, 특근
+                        분대</span></label><label><input class="item-four-radio" name="item-four" type="radio"
+                        value="1.35" /><span data-en="
+                    1.35x: Leader Squad, Tactical Destruction Squad, Tactical Fortification Squad" data-i18n-text="1"
+                        data-ko=" 1.35배율: 지휘 분대, 파괴 전술 분대, 방어 전술 분대"> 1.35배율: 지휘 분대, 파괴 전술 분대, 방어 전술
+                        분대</span></label><label><input class="item-four-radio" name="item-four" type="radio"
+                        value="1.4" /><span data-en=" 1.4x: Sui's Shadow Squad,
+                    Tactical Assault Squad, Sui Regulator Squad" data-i18n-text="1" data-ko=" 1.4배율: 쉐이 울림 분대, 강습 전술 분대,
+                    사세대 분대"> 1.4배율: 쉐이 울림 분대, 강습 전술 분대,
+                        사세대 분대</span></label><label><input class="item-four-radio" name="item-four" type="radio"
+                        value="1.5" /><span data-en="
+                    1.5x: Tactical Ranged Squad, High Ground/Ground Breaching Squad" data-i18n-text="1" data-ko="
+                    1.5배율: 원거리 전술 분대, 고지대/지상 돌파 분대">
+                        1.5배율: 원거리 전술 분대, 고지대/지상 돌파 분대</span></label><label><input class="item-four-radio"
+                        name="item-four" type="radio" value="1.6" /><span data-en=" 1.6x: First-Class Squad"
+                        data-i18n-text="1" data-ko=" 1.6배율: 고급화 분대"> 1.6배율: 고급화 분대</span></label>
+            </div><br />
         </div>
         <div class="extra-score-panel">
-            <div class="extra-score-result">5번 항목: <span id="itemFiveScore">0점</span></div>
-            <div class="checklist-title">5번 표</div>
+            <div class="extra-score-result"><span data-en="Item 5: " data-i18n-text="1" data-ko="5번 항목: ">5번 항목:
+                </span><span id="itemFiveScore"><span data-en="0 pts" data-i18n-text="1" data-ko="0점">0점</span></span>
+            </div>
+            <div class="checklist-title"><span data-en="Item 5 Table" data-i18n-text="1" data-ko="5번 표">5번 표</span>
+            </div>
             <table class="dollar-table">
                 <tbody>
                     <tr>
-                        <th>50ⓒ</th>
-                        <td><button class="dollar-cell" data-id="50-1" data-dollar="50" title="50-1"><img
-                                    src="images/50-1.png" alt="50-1"></button></td>
+                        <th><span data-en="50ⓒ" data-i18n-text="1" data-ko="50ⓒ">50ⓒ</span></th>
+                        <td><button class="dollar-cell" data-dollar="50" data-id="50-1" title="50-1"><img alt="50-1"
+                                    src="images/50-1.png" /></button></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -386,88 +580,162 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <th>40ⓒ</th>
-                        <td><button class="dollar-cell" data-id="40-1" data-dollar="40" title="40-1"><img
-                                    src="images/40-1.png" alt="40-1"></button></td>
-                        <td><button class="dollar-cell" data-id="40-2" data-dollar="40" title="40-2"><img
-                                    src="images/40-2.png" alt="40-2"></button></td>
-                        <td><button class="dollar-cell" data-id="40-3" data-dollar="40" title="40-3"><img
-                                    src="images/40-3.png" alt="40-3"></button></td>
-                        <td><button class="dollar-cell" data-id="40-4" data-dollar="40" title="40-4"><img
-                                    src="images/40-4.png" alt="40-4"></button></td>
+                        <th><span data-en="40ⓒ" data-i18n-text="1" data-ko="40ⓒ">40ⓒ</span></th>
+                        <td><button class="dollar-cell" data-dollar="40" data-id="40-1" title="40-1"><img alt="40-1"
+                                    src="images/40-1.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="40" data-id="40-2" title="40-2"><img alt="40-2"
+                                    src="images/40-2.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="40" data-id="40-3" title="40-3"><img alt="40-3"
+                                    src="images/40-3.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="40" data-id="40-4" title="40-4"><img alt="40-4"
+                                    src="images/40-4.png" /></button></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <th>30ⓒ</th>
-                        <td><button class="dollar-cell" data-id="30-1" data-dollar="30" title="30-1"><img
-                                    src="images/30-1.png" alt="30-1"></button></td>
-                        <td><button class="dollar-cell" data-id="30-2" data-dollar="30" title="30-2"><img
-                                    src="images/30-2.png" alt="30-2"></button></td>
-                        <td><button class="dollar-cell" data-id="30-3" data-dollar="30" title="30-3"><img
-                                    src="images/30-3.png" alt="30-3"></button></td>
-                        <td><button class="dollar-cell" data-id="30-4" data-dollar="30" title="30-4"><img
-                                    src="images/30-4.png" alt="30-4"></button></td>
-                        <td><button class="dollar-cell" data-id="30-5" data-dollar="30" title="30-5"><img
-                                    src="images/30-5.png" alt="30-5"></button></td>
+                        <th><span data-en="30ⓒ" data-i18n-text="1" data-ko="30ⓒ">30ⓒ</span></th>
+                        <td><button class="dollar-cell" data-dollar="30" data-id="30-1" title="30-1"><img alt="30-1"
+                                    src="images/30-1.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="30" data-id="30-2" title="30-2"><img alt="30-2"
+                                    src="images/30-2.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="30" data-id="30-3" title="30-3"><img alt="30-3"
+                                    src="images/30-3.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="30" data-id="30-4" title="30-4"><img alt="30-4"
+                                    src="images/30-4.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="30" data-id="30-5" title="30-5"><img alt="30-5"
+                                    src="images/30-5.png" /></button></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <th>20ⓒ</th>
-                        <td><button class="dollar-cell" data-id="20-1" data-dollar="20" title="20-1"><img
-                                    src="images/20-1.png" alt="20-1"></button></td>
-                        <td><button class="dollar-cell" data-id="20-2" data-dollar="20" title="20-2"><img
-                                    src="images/20-2.png" alt="20-2"></button></td>
-                        <td><button class="dollar-cell" data-id="20-3" data-dollar="20" title="20-3"><img
-                                    src="images/20-3.png" alt="20-3"></button></td>
-                        <td><button class="dollar-cell" data-id="20-4" data-dollar="20" title="20-4"><img
-                                    src="images/20-4.png" alt="20-4"></button></td>
+                        <th><span data-en="20ⓒ" data-i18n-text="1" data-ko="20ⓒ">20ⓒ</span></th>
+                        <td><button class="dollar-cell" data-dollar="20" data-id="20-1" title="20-1"><img alt="20-1"
+                                    src="images/20-1.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="20" data-id="20-2" title="20-2"><img alt="20-2"
+                                    src="images/20-2.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="20" data-id="20-3" title="20-3"><img alt="20-3"
+                                    src="images/20-3.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="20" data-id="20-4" title="20-4"><img alt="20-4"
+                                    src="images/20-4.png" /></button></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <th>10ⓒ</th>
-                        <td><button class="dollar-cell" data-id="10-1" data-dollar="10" title="10-1"><img
-                                    src="images/10-1.png" alt="10-1"></button></td>
-                        <td><button class="dollar-cell" data-id="10-2" data-dollar="10" title="10-2"><img
-                                    src="images/10-2.png" alt="10-2"></button></td>
-                        <td><button class="dollar-cell" data-id="10-3" data-dollar="10" title="10-3"><img
-                                    src="images/10-3.png" alt="10-3"></button></td>
-                        <td><button class="dollar-cell" data-id="10-4" data-dollar="10" title="10-4"><img
-                                    src="images/10-4.png" alt="10-4"></button></td>
-                        <td><button class="dollar-cell" data-id="10-5" data-dollar="10" title="10-5"><img
-                                    src="images/10-5.png" alt="10-5"></button></td>
-                        <td><button class="dollar-cell" data-id="10-6" data-dollar="10" title="10-6"><img
-                                    src="images/10-6.png" alt="10-6"></button></td>
+                        <th><span data-en="10ⓒ" data-i18n-text="1" data-ko="10ⓒ">10ⓒ</span></th>
+                        <td><button class="dollar-cell" data-dollar="10" data-id="10-1" title="10-1"><img alt="10-1"
+                                    src="images/10-1.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="10" data-id="10-2" title="10-2"><img alt="10-2"
+                                    src="images/10-2.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="10" data-id="10-3" title="10-3"><img alt="10-3"
+                                    src="images/10-3.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="10" data-id="10-4" title="10-4"><img alt="10-4"
+                                    src="images/10-4.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="10" data-id="10-5" title="10-5"><img alt="10-5"
+                                    src="images/10-5.png" /></button></td>
+                        <td><button class="dollar-cell" data-dollar="10" data-id="10-6" title="10-6"><img alt="10-6"
+                                    src="images/10-6.png" /></button></td>
                     </tr>
                 </tbody>
-            </table><br>
-            <div class="extra-score-result">6번 항목: <span id="itemSixScore">0점</span></div><label
-                class="inline-input-label">선행서버 플레이 시 대회 기준 미출시 오퍼레이터/모듈 사용 횟수: <input id="unreleasedUsageCount"
-                    class="small-number-input" type="number" value="0" min="0"> 회</label><br><br>
-            <div class="extra-score-result">7번 항목: <span id="itemSevenScore">0점</span></div><label
-                class="inline-input-label">초과 오리지늄 각뿔 출금 개수: <input id="extraOriginiumCount" class="small-number-input"
-                    type="number" value="0" min="0"> 개</label><br>
+            </table><br />
+            <div class="extra-score-result"><span data-en="Item 6: " data-i18n-text="1" data-ko="6번 항목: ">6번 항목:
+                </span><span id="itemSixScore"><span data-en="0 pts" data-i18n-text="1" data-ko="0점">0점</span></span>
+            </div><label class="inline-input-label"><span
+                    data-en="Infractions committed by using unreleased modules/operators" data-i18n-text="1"
+                    data-ko="선행서버 플레이 시 대회 기준 미출시 오퍼레이터/모듈 사용 횟수: ">선행서버 플레이 시 대회 기준 미출시 오퍼레이터/모듈 사용 횟수: </span><input
+                    class="small-number-input" id="unreleasedUsageCount" min="0" type="number" value="0" /><span
+                    data-en="
+                times" data-i18n-text="1" data-ko=" 회"> 회</span></label><br /><br />
+            <div class="extra-score-result"><span data-en="Item 7: " data-i18n-text="1" data-ko="7번 항목: ">7번 항목:
+                </span><span id="itemSevenScore"><span data-en="0 pts" data-i18n-text="1" data-ko="0점">0점</span></span>
+            </div><label class="inline-input-label"><span data-en="Amount exceeding Withdraw Limit: " data-i18n-text="1"
+                    data-ko="초과 오리지늄 각뿔 출금 개수: ">초과 오리지늄 각뿔 출금 개수: </span><input class="small-number-input"
+                    id="extraOriginiumCount" min="0" type="number" value="0" /><span data-en=" Ingots"
+                    data-i18n-text="1" data-ko=" 개"> 개</span></label><br />
         </div>
         <div class="manual-panel">
-            <div class="manual-title">설명서</div>
-
+            <div class="manual-title"><span data-en="Manual" data-i18n-text="1" data-ko="설명서">설명서</span></div>
             <div class="manual-content">
-                <p>1. 최상단에서 1p와 2p를 변경할 수 있습니다.</p>
-                <p>2. 표에서 구매한 오퍼레이터는 클릭으로 표시할 수 있습니다. 무료로 구매한 경우 우클릭으로 구매할 수 있습니다.</p>
-                <p>3. 최종점수는 룰북의 계산대로 적용됩니다.</p>
-                <p>4. 인게임 클리어 점수칸에는 본인의 인게임 클리어 점수를 입력하면 됩니다.</p>
-                <p>5. 1번 항목에서 획득한 유물의 개수를 입력하면 점수를 적용할 수 있습니다.</p>
-                <p>6. 2번 항목에서 보스 버튼을 눌러 해당 점수를 적용할 수 있습니다. '완벽한 전투'와 소장품 버튼을 눌러 추가 점수를 확인할 수 있습니다.</p>
-                <p>7. 2번 항목에서 보스 버튼의 순서는 룰북의 순서와 같습니다. 기본 맵이면 보라색, 맵이 변형되었다면 빨간색 입니다.</p>
-                <p>8. 3번 항목에서 만족한 조건을 적용할 수 있습니다.</p>
-                <p>9. 4번 항목에서 분대를 선택할 수 있습니다.</p>
-                <p>10. 5번 항목에서 2p는 미사용 10코인당 50점이 반영이 되어있습니다. 해금하지 않은 오퍼레이터 모집 시 클릭하여 적용할 수 있습니다.</p>
-                <p>11. 6번, 7번 항목도 마찬가지로 본인의 상황에 맞게 적용할 수 있습니다.</p>
+                <p><span data-en="1. Player 1 and Player 2 can be toggled at the top." data-i18n-text="1"
+                        data-ko="1. 최상단에서 1p와 2p를 변경할 수 있습니다.">1. 최상단에서 1p와 2p를 변경할 수 있습니다.</span></p>
+                <p><span data-en="2. Left Click an Operator to purchase them. Right Click if they are purchased for free."
+                        data-i18n-text="1" data-ko="2. 표에서 구매한 오퍼레이터는 클릭으로 표시할 수 있습니다. 무료로 구매한 경우 우클릭으로 구매할 수 있습니다.">2.
+                        표에서 구매한 오퍼레이터는 클릭으로 표시할 수 있습니다. 무료로 구매한 경우 우클릭으로 구매할 수 있습니다.</span></p>
+                <p><span data-en="3. The final score is computed based on the rule book." data-i18n-text="1"
+                        data-ko="3. 최종점수는 룰북의 계산대로 적용됩니다.">3. 최종점수는 룰북의 계산대로 적용됩니다.</span></p>
+                <p><span data-en="4. Enter your in-game score in the in-game score box." data-i18n-text="1"
+                        data-ko="4. 인게임 클리어 점수칸에는 본인의 인게임 클리어 점수를 입력하면 됩니다.">4. 인게임 클리어 점수칸에는 본인의 인게임 클리어 점수를 입력하면
+                        됩니다.</span></p>
+                <p><span data-en="5. In Item 1, Enter the number of relics obtained." data-i18n-text="1"
+                        data-ko="5. 1번 항목에서 획득한 유물의 개수를 입력하면 점수를 적용할 수 있습니다.">5. 1번 항목에서 획득한 유물의 개수를 입력하면 점수를 적용할 수
+                        있습니다.</span></p>
+                <p><span data-en="6. In Item 2, select the boss icon to compute the score. Bonuses for Flawless Clear and additional
+                    relics can be applied by selecting them." data-i18n-text="1"
+                        data-ko="6. 2번 항목에서 보스 버튼을 눌러 해당 점수를 적용할 수 있습니다. '완벽한 전투'와 소장품 버튼을 눌러 추가 점수를 확인할 수 있습니다.">6. 2번
+                        항목에서 보스 버튼을 눌러 해당 점수를 적용할 수 있습니다. '완벽한 전투'와 소장품 버튼을 눌러 추가 점수를 확인할 수 있습니다.</span></p>
+                <p><span data-en='7. The order of the boss icons in Item 2 is the same as the rulebook. The normal map ("Defining the
+                    World") has a purple icon, and the modified map ("Stasis") has a red icon.' data-i18n-text="1"
+                        data-ko="7. 2번 항목에서 보스 버튼의 순서는 룰북의 순서와 같습니다. 기본 맵이면 보라색, 맵이 변형되었다면 빨간색 입니다.">7. 2번 항목에서 보스 버튼의
+                        순서는 룰북의 순서와 같습니다. 기본 맵이면 보라색, 맵이 변형되었다면 빨간색 입니다.</span></p>
+                <p><span data-en="8. In Item 3, check ALL conditions that have been satisfied." data-i18n-text="1"
+                        data-ko="8. 3번 항목에서 만족한 조건을 적용할 수 있습니다.">8. 3번 항목에서 만족한 조건을 적용할 수 있습니다.</span></p>
+                <p><span data-en="9. In Item 4, select your starting squad." data-i18n-text="1"
+                        data-ko="9. 4번 항목에서 분대를 선택할 수 있습니다.">9. 4번 항목에서 분대를 선택할 수 있습니다.</span></p>
+                <p><span data-en="10. In Item 5, select all operators that were recruited without being unlocked. The score for Player
+                    2 includes the bonus for unused coins." data-i18n-text="1"
+                        data-ko="10. 5번 항목에서 2p는 미사용 10코인당 50점이 반영이 되어있습니다. 해금하지 않은 오퍼레이터 모집 시 클릭하여 적용할 수 있습니다.">10. 5번
+                        항목에서 2p는 미사용 10코인당 50점이 반영이 되어있습니다. 해금하지 않은 오퍼레이터 모집 시 클릭하여 적용할 수 있습니다.</span></p>
+                <p><span data-en="11. Items 6 and 7 should be modified based on your situation." data-i18n-text="1"
+                        data-ko="11. 6번, 7번 항목도 마찬가지로 본인의 상황에 맞게 적용할 수 있습니다.">11. 6번, 7번 항목도 마찬가지로 본인의 상황에 맞게 적용할 수
+                        있습니다.</span></p>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
     <script src="script.js"></script>
+
+    <script id="inline-language-switcher">
+        (function () {
+            function getLang() {
+                return localStorage.getItem("honeyCupLang") || "ko";
+            }
+
+            function setLang(lang) {
+                localStorage.setItem("honeyCupLang", lang);
+                document.documentElement.lang = lang;
+                document.title = lang === "en" ? "Point Calculator" : "점수 계산 표";
+
+                document.querySelectorAll("[data-i18n-text]").forEach(function (el) {
+                    var nextText = el.dataset[lang];
+                    if (nextText !== undefined) {
+                        el.textContent = nextText;
+                    }
+                });
+
+                document.querySelectorAll(".lang-toggle").forEach(function (button) {
+                    button.classList.toggle("active", button.dataset.lang === lang);
+                });
+
+                window.honeyCupLang = lang;
+                if (typeof updateScore === "function") {
+                    updateScore();
+                }
+            }
+
+            window.getHoneyCupLang = getLang;
+            window.setHoneyCupLang = setLang;
+
+            document.addEventListener("DOMContentLoaded", function () {
+                document.querySelectorAll(".lang-toggle").forEach(function (button) {
+                    button.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        var lang = button.dataset.lang;
+                        if (lang) setLang(lang);
+                    });
+                });
+
+                setLang(getLang());
+            });
+        })();
+    </script>
 </body>
 
 </html>

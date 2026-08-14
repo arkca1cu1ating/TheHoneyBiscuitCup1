@@ -84,6 +84,40 @@ const calcStates = {
     p1: defaultCalcState(),
     p2: defaultCalcState()
 };
+
+function saveAllState() {
+    const data = {
+        currentPlayer,
+        playerSelections,
+        calcStates
+    };
+
+    localStorage.setItem(
+        "honeyCupState",
+        JSON.stringify(data)
+    );
+}
+
+function loadAllState() {
+    const raw = localStorage.getItem("honeyCupState");
+
+    if (!raw) return;
+
+    const data = JSON.parse(raw);
+
+    currentPlayer = data.currentPlayer || "p1";
+
+    Object.assign(
+        playerSelections,
+        data.playerSelections || {}
+    );
+
+    Object.assign(
+        calcStates,
+        data.calcStates || {}
+    );
+}
+
 let selected = cloneSelected(calcStates[currentPlayer].selected);
 const rowRules = {
     top: {
@@ -675,6 +709,258 @@ function clearAll() {
         e.textContent = "0점"
     })
 }
+const generateSeedBtn =
+    document.getElementById("generateSeed");
+
+const loadSeedBtn =
+    document.getElementById("loadSeed");
+
+const seedInput =
+    document.getElementById("seedInput");
+
+const SEED_VERSION = 2;
+const COL_KEYS = ["a", "b", "c", "d", "f", "g"];
+
+function compactColumns(columns) {
+    return COL_KEYS.filter(k => columns && columns[k]).join("");
+}
+
+function expandColumns(text) {
+    const columns = { a: false, b: false, c: false, d: false, f: false, g: false };
+    String(text || "").split("").forEach(k => {
+        if (columns.hasOwnProperty(k)) columns[k] = true;
+    });
+    return columns;
+}
+
+function compactSelectedGroup(group) {
+    const row = group?.activeRow || "";
+    const cols = compactColumns(group?.columns);
+    if (!row && !cols) return undefined;
+    return [row, cols];
+}
+
+function expandSelectedGroup(data) {
+    return {
+        activeRow: data?.[0] || null,
+        columns: expandColumns(data?.[1] || "")
+    };
+}
+
+function compactSelectedData(selectedData) {
+    const result = {};
+    const groups = [
+        ["top", "t"],
+        ["bottom", "b"],
+        ["five", "f"]
+    ];
+
+    groups.forEach(([fullKey, shortKey]) => {
+        const packed = compactSelectedGroup(selectedData?.[fullKey]);
+        if (packed) result[shortKey] = packed;
+    });
+
+    return Object.keys(result).length ? result : undefined;
+}
+
+function expandSelectedData(data) {
+    const base = defaultSelected();
+    if (!data) return base;
+
+    if (data.t) base.top = expandSelectedGroup(data.t);
+    if (data.b) base.bottom = expandSelectedGroup(data.b);
+    if (data.f) base.five = expandSelectedGroup(data.f);
+
+    return base;
+}
+
+function compactCalcState(state) {
+    const result = {};
+
+    if (state.ingame && state.ingame !== "0") result.i = state.ingame;
+    if (state.artifact && state.artifact !== "0") result.a = state.artifact;
+
+    const selectedPacked = compactSelectedData(state.selected);
+    if (selectedPacked) result.s = selectedPacked;
+
+    const itemThree = (state.itemThree || [])
+        .map((checked, index) => checked ? index : -1)
+        .filter(index => index >= 0);
+    if (itemThree.length) result.m = itemThree;
+
+    if (state.itemFour && state.itemFour !== "1") result.q = state.itemFour;
+    if (state.keobe && state.keobe !== "0") result.k = state.keobe;
+    if (state.dollar && state.dollar.length) result.d = state.dollar;
+    if (state.unreleased && state.unreleased !== "0") result.u = state.unreleased;
+    if (state.extra && state.extra !== "0") result.e = state.extra;
+
+    return result;
+}
+
+function expandCalcState(data) {
+    const state = defaultCalcState();
+    if (!data) return state;
+
+    state.ingame = data.i ?? "0";
+    state.artifact = data.a ?? "0";
+    state.selected = expandSelectedData(data.s);
+
+    state.itemThree = Array.from(itemThreeChecks).map((_, index) =>
+        Array.isArray(data.m) ? data.m.includes(index) : false
+    );
+
+    state.itemFour = data.q ?? "1";
+    state.keobe = data.k ?? "0";
+    state.dollar = Array.isArray(data.d) ? data.d : [];
+    state.unreleased = data.u ?? "0";
+    state.extra = data.e ?? "0";
+
+    return state;
+}
+
+function modeToCode(mode) {
+    if (mode === "free") return "f";
+    if (mode === "triple") return "t";
+    return "p";
+}
+
+function codeToMode(code) {
+    if (code === "f") return "free";
+    if (code === "t") return "triple";
+    return "paid";
+}
+
+function compactPlayerSelections(selection) {
+    return Object.entries(selection || {}).map(([id, info]) => {
+        const code = modeToCode(info.mode);
+        return code === "p" ? id : id + ":" + code;
+    });
+}
+
+function expandPlayerSelections(list) {
+    const result = {};
+    if (!Array.isArray(list)) return result;
+
+    list.forEach(value => {
+        const [id, code = "p"] = String(value).split(":");
+        if (!id) return;
+
+        const mode = codeToMode(code);
+        const base = Number(String(id).split("-")[0]) || 0;
+        const cost = mode === "free" ? 0 : mode === "triple" ? base * 2 : base;
+
+        result[id] = { mode, cost };
+    });
+
+    return result;
+}
+
+function buildSeedData() {
+    saveCalcState();
+
+    const data = { v: SEED_VERSION };
+
+    if (currentPlayer === "p2") data.c = "2";
+
+    const p1Selections = compactPlayerSelections(playerSelections.p1);
+    const p2Selections = compactPlayerSelections(playerSelections.p2);
+    if (p1Selections.length || p2Selections.length) {
+        data.p = {};
+        if (p1Selections.length) data.p[1] = p1Selections;
+        if (p2Selections.length) data.p[2] = p2Selections;
+    }
+
+    const p1State = compactCalcState(calcStates.p1);
+    const p2State = compactCalcState(calcStates.p2);
+    if (Object.keys(p1State).length || Object.keys(p2State).length) {
+        data.s = {};
+        if (Object.keys(p1State).length) data.s[1] = p1State;
+        if (Object.keys(p2State).length) data.s[2] = p2State;
+    }
+
+    return data;
+}
+
+function applySeedData(data) {
+    if (data?.v === SEED_VERSION) {
+        currentPlayer = data.c === "2" ? "p2" : "p1";
+
+        playerSelections.p1 = expandPlayerSelections(data.p?.[1]);
+        playerSelections.p2 = expandPlayerSelections(data.p?.[2]);
+
+        calcStates.p1 = expandCalcState(data.s?.[1]);
+        calcStates.p2 = expandCalcState(data.s?.[2]);
+        return;
+    }
+
+    // Backward compatibility for older long seeds.
+    currentPlayer = data.currentPlayer || "p1";
+    Object.assign(playerSelections, data.playerSelections || {});
+    Object.assign(calcStates, data.calcStates || {});
+}
+
+function encodeSeedData(data) {
+    const json = JSON.stringify(data);
+
+    if (typeof LZString === "undefined") {
+        throw new Error("LZString 라이브러리를 불러오지 못했습니다.");
+    }
+
+    return LZString.compressToEncodedURIComponent(json);
+}
+
+function decodeSeedData(seed) {
+    if (typeof LZString === "undefined") {
+        throw new Error("LZString 라이브러리를 불러오지 못했습니다.");
+    }
+
+    const json = LZString.decompressFromEncodedURIComponent(seed);
+    if (!json) throw new Error("시드 압축 해제 실패");
+
+    return JSON.parse(json);
+}
+
+function exportSeed() {
+    try {
+        const seed = encodeSeedData(buildSeedData());
+        seedInput.value = seed;
+        seedInput.select();
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(seed).catch(() => {});
+        }
+    } catch (e) {
+        console.error(e);
+        alert(e.message || "시드 발급에 실패했습니다.");
+    }
+}
+
+function importSeed(seed) {
+    try {
+        const data = decodeSeedData(seed);
+
+        applySeedData(data);
+
+        saveAllState();
+        loadCalcState(currentPlayer);
+        updatePlayerUI();
+        updateScore();
+    } catch (e) {
+        console.error(e);
+        alert("잘못된 시드입니다.");
+    }
+}
+
+generateSeedBtn?.addEventListener(
+    "click",
+    exportSeed
+);
+
+loadSeedBtn?.addEventListener(
+    "click",
+    () => importSeed(seedInput.value.trim())
+);
+
 loadCalcState(currentPlayer);
 updatePlayerUI();
 saveCalcState();

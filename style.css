@@ -553,3 +553,74 @@ body {
 .dollar-cell.duplicate {
     background: #ff0000 !important;
 }
+
+.top-switch-panel {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 8px 14px;
+    border: 2px solid #000;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.language-switch-panel {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.lang-toggle {
+    flex: 1;
+    height: 38px;
+    border: 2px solid #000;
+    background: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.lang-toggle.active {
+    background: linear-gradient(90deg, #EDA1AD, #53D2B6) !important;
+    color: #000 !important;
+}
+
+.player-switch-panel {
+    position: static !important;
+    top: auto !important;
+    z-index: auto !important;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-sizing: border-box;
+}
+
+.seed-panel {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+#seedInput {
+    flex: 1;
+    height: 38px;
+    padding: 0 10px;
+    border: 2px solid #000;
+    font-size: 16px;
+}
+
+#generateSeed,
+#loadSeed {
+    height: 38px;
+    min-width: 100px;
+    border: 2px solid #000;
+    background: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
